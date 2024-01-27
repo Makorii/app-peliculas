@@ -24,3 +24,9 @@ body {
 .slider {
   height: 600px;
 }
+
+.boxes-movies {
+  max-height: 600px;
+  overflow: scroll;
+  padding-top: 0 !important;
+}
