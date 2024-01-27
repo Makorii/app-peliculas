@@ -32,7 +32,7 @@ function NewMovies() {
 
   return (
     <Box>
-        <Typography variant="h4" align="center" p={2} sx={{color:"white"}}>
+        <Typography variant="h4" align="center" p={2}>
           New movies
         </Typography>
       <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
