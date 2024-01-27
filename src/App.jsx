@@ -9,15 +9,15 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />}/>
-      <Route path="/new-movies" element={<NewMovies />}/>
-      <Route path="/popular" element={<Popular />}/>
-    </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new-movies" element={<NewMovies />} />
+          <Route path="/popular" element={<Popular />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App
