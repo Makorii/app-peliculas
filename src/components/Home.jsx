@@ -1,4 +1,3 @@
-import Header from "./Header";
 import Slider from "./Slider";
 import { useEffect, useState } from "react";
 import {
@@ -56,7 +55,6 @@ function Home() {
 
   return (
     <>
-      <Header />
       <Slider />
       <Container>
         <Grid
