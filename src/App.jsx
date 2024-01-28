@@ -4,6 +4,7 @@ import NewMovies from "./components/NewMovies"
 import Popular from "./components/Popular"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SearchMovies from "./components/SearchMovies";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/new-movies" element={<NewMovies />} />
           <Route path="/popular" element={<Popular />} />
+          <Route path="/search" element={<SearchMovies />}/>
         </Routes>
         <Footer />
       </BrowserRouter>
