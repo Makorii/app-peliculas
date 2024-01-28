@@ -3,33 +3,16 @@ import { useEffect, useState } from 'react';
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
+import useData from '../hooks/useData';
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 function Slider() {
+  const {data, moviesSlider} = useData()
 
-    const [movies, setMovies] = useState([])
-
-    const apiKey = import.meta.env.VITE_API_KEY_TMDB;
-
-    const url =
-      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&&language=es-ES&page=1&sort_by=popularity.desc";
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          `Bearer ${apiKey}`,
-      },
-    };
-
-    useEffect(() => {
-        fetch(url, options)
-          .then((res) => res.json())
-          .then((json) => setMovies(json.results.slice(0, 5)))
-          .catch((err) => console.error("error:" + err));
-      }, []);
-
+  useEffect(() => {
+    moviesSlider();
+  }, [])
 
   return (
       <AutoplaySlider
@@ -39,7 +22,7 @@ function Slider() {
         className="slider"
         infinite={true}
       >
-        {movies.map((movie) => (
+        {data.map((movie) => (
           <div
             key={movie.id}
             style={{
