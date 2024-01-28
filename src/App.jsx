@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NewMovies from "./components/NewMovies"
 import Popular from "./components/Popular"
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/new-movies" element={<NewMovies />} />
           <Route path="/popular" element={<Popular />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
