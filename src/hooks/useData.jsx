@@ -39,10 +39,28 @@ function useData() {
       .catch((err) => console.error("error:" + err));
   };
 
+  const newMovies = () => {
+    const url =
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => setData(data.results))
+      .catch((err) => console.error("error:" + err));
+  };
+
   return {
     data,
     moviesSlider,
-    popularMovies
+    popularMovies,
+    newMovies
   };
 }
 
