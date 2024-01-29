@@ -22,9 +22,27 @@ function useData() {
       .catch((err) => console.error("error:" + err));
   };
 
+  const popularMovies = () => {
+    const url =
+      "https://api.themoviedb.org/3/movie/popular?language=es-ES&page=1";
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => setData(data.results))
+      .catch((err) => console.error("error:" + err));
+  };
+
   return {
     data,
     moviesSlider,
+    popularMovies
   };
 }
 
