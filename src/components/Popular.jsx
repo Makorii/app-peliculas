@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -5,30 +6,18 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Box, Container } from "@mui/material";
+import useData from "../hooks/useData";
 
 function Popular() {
-  const [popular, setPopular] = useState([]);
-  const apiKey = import.meta.env.VITE_API_KEY_TMDB;
 
-  const url =
-    "https://api.themoviedb.org/3/movie/popular?language=es-ES&page=1";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
+  const {data, popularMovies} = useData();
+
   useEffect(() => {
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((data) => setPopular(data.results))
-      .catch((err) => console.error("error:" + err));
-  }, []);
+    popularMovies()
+  }, [])
 
   return (
     <Box>
@@ -36,7 +25,7 @@ function Popular() {
           Popular Movies
         </Typography>
       <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
-        {popular.map((movie) => (
+        {data.map((movie) => (
           <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
             <CardMedia
               component="img"
