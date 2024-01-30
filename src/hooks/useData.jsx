@@ -56,11 +56,30 @@ function useData() {
       .catch((err) => console.error("error:" + err));
   };
 
+  const searchMovie = (title) => {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=es-ES`;
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${apiKey}`
+      }
+    };
+
+    fetch(url, options)
+      .then(res => res.json())
+      .then(data => {
+        setData(data.results); })
+      .catch(err => console.error('error:' + err))
+    
+    }
+
   return {
     data,
     moviesSlider,
     popularMovies,
-    newMovies
+    newMovies,
+    searchMovie,
   };
 }
 
