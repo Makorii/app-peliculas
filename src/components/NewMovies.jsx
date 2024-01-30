@@ -12,10 +12,10 @@ import { Box, Container } from "@mui/material";
 import useData from "../hooks/useData";
 
 function NewMovies() {
-  const { data, newMovies } = useData()
+  const { data, getMovie } = useData()
 
   useEffect(() => {
-    newMovies()
+    getMovie("now_playing")
   }, [])
 
 
