@@ -13,10 +13,10 @@ import useData from "../hooks/useData";
 
 function Popular() {
 
-  const {data, popularMovies} = useData();
+  const {data, getMovie} = useData();
 
   useEffect(() => {
-    popularMovies()
+    getMovie("popular")
   }, [])
 
   return (
