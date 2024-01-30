@@ -5,6 +5,23 @@ function useData() {
 
   const apiKey = import.meta.env.VITE_API_KEY_TMDB;
 
+  const getMovie = (category) => {
+    const url =
+    `https://api.themoviedb.org/3/movie/${category}?language=es-ES&page=1`;
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+  };
+
+  fetch(url, options)
+    .then((res) => res.json())
+    .then((data) => setData(data.results))
+    .catch((err) => console.error("error:" + err));
+  }
+
   const moviesSlider = () => {
     const url =
       "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&&language=es-ES&page=1&sort_by=popularity.desc";
@@ -38,6 +55,23 @@ function useData() {
       .then((data) => setData(data.results))
       .catch((err) => console.error("error:" + err));
   };
+
+  const topMovies = () => {
+    const url =
+    "https://api.themoviedb.org/3/movie/top_rated?language=es-ESS&page=1";
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+  };
+
+  fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => setData(json.results.slice(0, 20)))
+  .catch((err) => console.error("error:" + err));
+  }
 
   const newMovies = () => {
     const url =
@@ -78,8 +112,10 @@ function useData() {
     data,
     moviesSlider,
     popularMovies,
+    topMovies,
     newMovies,
     searchMovie,
+    getMovie,
   };
 }
 
