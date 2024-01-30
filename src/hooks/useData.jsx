@@ -39,57 +39,6 @@ function useData() {
       .catch((err) => console.error("error:" + err));
   };
 
-  const popularMovies = () => {
-    const url =
-      "https://api.themoviedb.org/3/movie/popular?language=es-ES&page=1";
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-    };
-
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((data) => setData(data.results))
-      .catch((err) => console.error("error:" + err));
-  };
-
-  const topMovies = () => {
-    const url =
-    "https://api.themoviedb.org/3/movie/top_rated?language=es-ESS&page=1";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
-
-  fetch(url, options)
-  .then((res) => res.json())
-  .then((json) => setData(json.results.slice(0, 20)))
-  .catch((err) => console.error("error:" + err));
-  }
-
-  const newMovies = () => {
-    const url =
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-    };
-
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((data) => setData(data.results))
-      .catch((err) => console.error("error:" + err));
-  };
-
   const searchMovie = (title) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=es-ES`;
     const options = {
@@ -110,12 +59,9 @@ function useData() {
 
   return {
     data,
-    moviesSlider,
-    popularMovies,
-    topMovies,
-    newMovies,
-    searchMovie,
     getMovie,
+    moviesSlider,
+    searchMovie,
   };
 }
 
