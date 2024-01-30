@@ -14,7 +14,7 @@ const FavoritesContextProvider = ({ children }) => {
     }
 
     const isFavorite = (idMovie) => {
-        favorites.some((movie) => movie.id === idMovie)
+        return favorites.some((movie) => movie.id === idMovie)
     }
 
     const data = {
@@ -24,11 +24,8 @@ const FavoritesContextProvider = ({ children }) => {
         isFavorite,
     };
 
-    return (
-        <FavoritesContextProvider value={data}>
-            {children}
-        </FavoritesContextProvider>
-    ) 
+    return <FavoritesContext.Provider value={data}> {children} </FavoritesContext.Provider>
+ 
 }
 
 export default FavoritesContextProvider
