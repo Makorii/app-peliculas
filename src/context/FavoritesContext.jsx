@@ -1,9 +1,9 @@
-import React from 'react'
+import { createContext } from 'react'
 
-function FavoritesContext() {
-  return (
-    <div>FavoritesContext</div>
-  )
+export const FavoritesContext = createContext();
+
+const FavoritesContextProvider = () => {
+
 }
 
-export default FavoritesContext
+export default FavoritesContextProvider
