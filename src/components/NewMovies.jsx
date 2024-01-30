@@ -9,26 +9,15 @@ import { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Box, Container } from "@mui/material";
+import useData from "../hooks/useData";
 
 function NewMovies() {
-  const [newMovies, setNewMovies] = useState([]);
-  const apiKey = import.meta.env.VITE_API_KEY_TMDB;
+  const { data, getMovie } = useData()
 
-  const url =
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
   useEffect(() => {
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((data) => setNewMovies(data.results))
-      .catch((err) => console.error("error:" + err));
-  }, []);
+    getMovie("now_playing")
+  }, [])
+
 
   return (
     <Box>
@@ -36,7 +25,7 @@ function NewMovies() {
           New movies
         </Typography>
       <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
-        {newMovies.map((movie) => (
+        {data.map((movie) => (
           <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
             <CardMedia
               component="img"
