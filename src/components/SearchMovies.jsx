@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect, useState } from "react";
+import useData from "../hooks/useData";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,29 +53,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function SearchMovies() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  
-  const apiKey = import.meta.env.VITE_API_KEY_TMDB;
+  const { data, searchMovie} = useData()
 
-  const searchMovie = (title) => {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=es-ES`;
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${apiKey}`
-      }
-    };
-
-    fetch(url, options)
-      .then(res => res.json())
-      .then(data => {
-        setFilteredMovies(data.results); })
-      .catch(err => console.error('error:' + err))
-    
-    }
-    
-    useEffect(() => {
+  useEffect(() => {
       searchMovie(searchTerm);
     }, [searchTerm]);
 
@@ -107,12 +88,12 @@ function SearchMovies() {
           </Toolbar>
         </AppBar>
       </Box>
-      {filteredMovies.length === 0 ? (
+      {data.length === 0 ? (
         <Box height="70.8vh"></Box>
       ) : (
         <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
           {" "}
-          {filteredMovies.map((movie) => (
+          {data.map((movie) => (
             <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
               <CardMedia
                 component="img"
