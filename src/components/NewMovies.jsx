@@ -2,16 +2,19 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { FcLike } from "react-icons/fc";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Box, Container } from "@mui/material";
 import useData from "../hooks/useData";
+import { useContext } from "react";
+import { FavoritesContext } from "../context/FavoritesContext";
 
 function NewMovies() {
   const { data, getMovie } = useData()
+  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
 
   useEffect(() => {
     getMovie("now_playing")
@@ -27,10 +30,19 @@ function NewMovies() {
         {data.map((movie) => (
           <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
             <Box display="flex" justifyContent="flex-end">
-              <FcLikePlaceholder
-                fontSize="25px"
-                style={{ position: "absolute", padding:"5px" }}
-              />
+              {isFavorite(movie.id) ? (
+                <FcLike
+                  fontSize="25px"
+                  style={{ position: "absolute", padding: "5px", cursor:"pointer" }}
+                  onClick={() => deleteFavorite(movie.id)}
+                />
+              ) : (
+                <FcLikePlaceholder
+                  fontSize="25px"
+                  style={{ position: "absolute", padding: "5px", cursor:"pointer" }}
+                  onClick={() => addFavorite(movie)}
+                />
+              )}
             </Box>
             <CardMedia
               component="img"
