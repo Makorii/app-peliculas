@@ -25,7 +25,7 @@ function MovieList({ category }) {
         id="nested-list-subheader"
         sx={{ backgroundColor: "#000000", color: "white" }}
       >
-        Popular Movies
+        {category === "popular" ? "Popular" : "Top Rated"}
       </ListSubheader>
       {data.map((movie) => (
         <Box key={movie.id}>
