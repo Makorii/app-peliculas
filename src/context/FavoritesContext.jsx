@@ -1,16 +1,24 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const FavoritesContext = createContext();
 
 const FavoritesContextProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([])
+    const [ getMovie, saveMovie ] = useLocalStorage("favorites")
+
+    useEffect(() => {
+        setFavorites(getMovie())
+    }, [])
 
     const addFavorite = (movie) => {
+        saveMovie([...favorites, movie])
         setFavorites([...favorites, movie])
     }
 
     const deleteFavorite = (idMovie) => {
-        setFavorites([favorites.filter((movie) => movie.id !== idMovie)])
+        saveMovie(favorites.filter((movie) => movie.id !== idMovie))
+        setFavorites(favorites.filter((movie) => movie.id !== idMovie))
     }
 
     const isFavorite = (idMovie) => {
