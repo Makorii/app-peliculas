@@ -11,10 +11,13 @@ import { Box, Container } from "@mui/material";
 import useData from "../hooks/useData";
 import { useContext } from "react";
 import { FavoritesContext } from "../context/FavoritesContext";
+import { useNavigate } from "react-router-dom";
 
 function NewMovies() {
   const { data, getMovie } = useData()
   const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getMovie("now_playing")
@@ -46,8 +49,11 @@ function NewMovies() {
             </Box>
             <CardMedia
               component="img"
+              height="375px"
               image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-              alt="Paella dish"
+              alt={`${movie.title}`}
+              onClick={() => navigate(`/detail/${movie.id}`)}
+              sx={{cursor:'pointer'}}
             />
             <CardContent>
               <Typography variant="subtitle2" align="center">
