@@ -57,11 +57,27 @@ function useData() {
     
     }
 
+  const detailMovie = (id) => {
+    const url = `https://api.themoviedb.org/3/movie/${id}?language=es-ES`;
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+    };
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((err) => console.error("error:" + err));
+  };
+
   return {
     data,
     getMovie,
     moviesSlider,
     searchMovie,
+    detailMovie,
   };
 }
 

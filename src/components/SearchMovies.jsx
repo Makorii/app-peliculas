@@ -8,6 +8,7 @@ import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } fro
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect, useState } from "react";
 import useData from "../hooks/useData";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,6 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function SearchMovies() {
   const [searchTerm, setSearchTerm] = useState('');
   const { data, searchMovie} = useData()
+  const navigate = useNavigate()
 
   useEffect(() => {
       searchMovie(searchTerm);
@@ -100,6 +102,8 @@ function SearchMovies() {
                 height="375px"
                 image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={`${movie.title}`}
+                onClick={() => navigate(`/detail/${movie.id}`)}
+                sx={{cursor:'pointer'}}
               />
               <CardContent>
                 <Typography variant="subtitle2" align="center">

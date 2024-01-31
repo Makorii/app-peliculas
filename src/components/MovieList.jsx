@@ -10,9 +10,11 @@ import {
 } from "@mui/material";
 import useData from "../hooks/useData";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function MovieList({ category }) {
     const { data, getMovie } = useData()
+    const navigate = useNavigate()
 
     useEffect(() => {
         getMovie(category);
@@ -36,7 +38,8 @@ function MovieList({ category }) {
               bgcolor: "background.paper",
             }}
           >
-            <ListItem>
+            <ListItem onClick={() => navigate(`/detail/${movie.id}`)}
+              sx={{cursor:'pointer'}}>
               <ListItemAvatar>
                 <Avatar
                   alt="Travis Howard"
