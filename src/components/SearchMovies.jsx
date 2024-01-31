@@ -6,9 +6,11 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useData from "../hooks/useData";
 import { useNavigate } from "react-router-dom";
+import { FavoritesContext } from "../context/FavoritesContext";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,6 +58,7 @@ function SearchMovies() {
   const [searchTerm, setSearchTerm] = useState('');
   const { data, searchMovie} = useData()
   const navigate = useNavigate()
+  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
 
   useEffect(() => {
       searchMovie(searchTerm);
@@ -97,24 +100,42 @@ function SearchMovies() {
           {" "}
           {data.map((movie) => (
             <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
+              <Box display="flex" justifyContent="flex-end">
+                {isFavorite(movie.id) ? (
+                  <FcLike
+                    fontSize="25px"
+                    style={{
+                      position: "absolute",
+                      padding: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => deleteFavorite(movie.id)}
+                  />
+                ) : (
+                  <FcLikePlaceholder
+                    fontSize="25px"
+                    style={{
+                      position: "absolute",
+                      padding: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => addFavorite(movie)}
+                  />
+                )}
+              </Box>
               <CardMedia
                 component="img"
                 height="375px"
                 image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={`${movie.title}`}
                 onClick={() => navigate(`/detail/${movie.id}`)}
-                sx={{cursor:'pointer'}}
+                sx={{ cursor: "pointer" }}
               />
               <CardContent>
                 <Typography variant="subtitle2" align="center">
                   {movie.title}
                 </Typography>
               </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-              </CardActions>
             </Card>
           ))}
         </Box>
