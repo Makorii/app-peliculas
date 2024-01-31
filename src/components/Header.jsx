@@ -1,25 +1,22 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
-
-
-const pages = ['Home', 'New Movies', 'Popular', 'Favorites'];
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -29,9 +26,8 @@ function Header() {
     setAnchorElNav(null);
   };
 
-
   return (
-    <AppBar position="static" style={{backgroundColor:"#000000"}}>
+    <AppBar position="static" style={{ backgroundColor: "#000000" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -74,17 +70,53 @@ function Header() {
                 vertical: "top",
                 horizontal: "left",
               }}
+              PaperProps={{ style: { backgroundColor: "#000000" } }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              <Button
+                key="home"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <MenuItem onClick={() => navigate("/")}>
+                  <Typography variant="subtitle2" textAlign="center">
+                    Home
+                  </Typography>
                 </MenuItem>
-              ))}
+              </Button>
+              <Button
+                key="new-movies"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <MenuItem onClick={() => navigate("/new-movies")}>
+                  <Typography variant="subtitle2" textAlign="center">
+                    New Movies
+                  </Typography>
+                </MenuItem>
+              </Button>
+              <Button
+                key="popular"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <MenuItem onClick={() => navigate("/popular")}>
+                  <Typography variant="subtitle2" textAlign="center">
+                    Popular
+                  </Typography>
+                </MenuItem>
+              </Button>
+              <Button
+                key="favorites"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <MenuItem onClick={() => navigate("/favorites")}>
+                  <Typography variant="subtitle2" textAlign="center">
+                    Favorites
+                  </Typography>
+                </MenuItem>
+              </Button>
             </Menu>
           </Box>
           <Typography
@@ -105,34 +137,48 @@ function Header() {
             Makoflix
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-          <Button key="home"
-                sx={{ my: 2, color: "white", display: "block" }}>
+            <Button key="home" sx={{ my: 2, color: "white", display: "block" }}>
               <MenuItem onClick={() => navigate("/")}>
-                <Typography variant='subtitle2' textAlign="center">Home</Typography>
+                <Typography variant="subtitle2" textAlign="center">
+                  Home
+                </Typography>
               </MenuItem>
             </Button>
-            <Button key="new-movies"
-                sx={{ my: 2, color: "white", display: "block" }}>
+            <Button
+              key="new-movies"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               <MenuItem onClick={() => navigate("/new-movies")}>
-                <Typography variant='subtitle2' textAlign="center">New Movies</Typography>
+                <Typography variant="subtitle2" textAlign="center">
+                  New Movies
+                </Typography>
               </MenuItem>
             </Button>
-            <Button key="popular"
-                sx={{ my: 2, color: "white", display: "block" }}>
+            <Button
+              key="popular"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               <MenuItem onClick={() => navigate("/popular")}>
-                <Typography variant='subtitle2' textAlign="center">Popular</Typography>
+                <Typography variant="subtitle2" textAlign="center">
+                  Popular
+                </Typography>
               </MenuItem>
             </Button>
-            <Button key="favorites"
-                sx={{ my: 2, color: "white", display: "block" }}>
+            <Button
+              key="favorites"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               <MenuItem onClick={() => navigate("/favorites")}>
-                <Typography variant='subtitle2' textAlign="center">Favorites</Typography>
+                <Typography variant="subtitle2" textAlign="center">
+                  Favorites
+                </Typography>
               </MenuItem>
             </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <MenuItem key="Search" onClick={() => navigate("/search")}>
+              <SearchIcon />
               <Typography textAlign="center">Search</Typography>
             </MenuItem>
           </Box>
