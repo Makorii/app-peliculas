@@ -11,9 +11,6 @@ import { Box, Container } from "@mui/material";
 function FavoritesMovies() {
     const { favorites, isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
 
-    console.log(favorites)
-
-
   return (
     <Box>
       <Typography variant="h4" align="center" p={2}>

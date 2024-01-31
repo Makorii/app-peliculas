@@ -5,21 +5,23 @@ function useData() {
 
   const apiKey = import.meta.env.VITE_API_KEY_TMDB;
 
-  const getMovie = (category) => {
-    const url =
-    `https://api.themoviedb.org/3/movie/${category}?language=es-ES&page=1`;
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
+  const getMovie = (category, page) => {
+    const url = `https://api.themoviedb.org/3/movie/${category}?language=es-ES&page=${page}`;
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+    };
 
-  fetch(url, options)
-    .then((res) => res.json())
-    .then((data) => setData(data.results))
-    .catch((err) => console.error("error:" + err));
+    return fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.results);
+        return data; 
+      })
+      .catch((err) => console.error("error:" + err));
   }
 
   const moviesSlider = () => {
