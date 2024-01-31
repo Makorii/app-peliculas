@@ -4,11 +4,13 @@ import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import useData from '../hooks/useData';
+import { useNavigate } from 'react-router-dom';
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 function Slider() {
   const {data, moviesSlider} = useData()
+  const navigate = useNavigate()
 
   useEffect(() => {
     moviesSlider();
@@ -33,7 +35,7 @@ function Slider() {
             }}
           >
             <Card sx={{ maxWidth: 700 }} style={{opacity:"75%"}}>
-              <CardActionArea>
+              <CardActionArea onClick={() => navigate(`/detail/${movie.id}`)}>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                   {movie.title}
