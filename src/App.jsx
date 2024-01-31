@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import SearchMovies from "./components/SearchMovies";
 import FavoritesContextProvider from "./context/FavoritesContext";
 import DetailMovie from "./components/DetailMovie";
+import FavoritesMovies from "./components/FavoritesMovies";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/popular" element={<Popular />} />
             <Route path="/search" element={<SearchMovies />} />
             <Route path="/detail/:id" element={<DetailMovie />} />
+            <Route path="/favorites" element={<FavoritesMovies />} />
           </Routes>
           <Footer />
         </FavoritesContextProvider>
