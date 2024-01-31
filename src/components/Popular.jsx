@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -15,12 +15,24 @@ function Popular() {
 
   const {data, getMovie} = useData();
   const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
-
   const navigate = useNavigate()
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
-    getMovie("popular")
-  }, [])
+    getMovie("popular", currentPage)
+      .then((result) => {
+        setTotalPages(result.total_pages);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      });
+  }, [currentPage, getMovie]);
+
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <Box>
@@ -63,7 +75,13 @@ function Popular() {
       </Box>
       <Box sx={{ display: "flex", justifyContent:"center" }} p={2}>
         <Stack spacing={2}>
-          <Pagination count={42492} showFirstButton showLastButton variant="outlined" shape="rounded"/>
+        <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            showFirstButton
+            showLastButton
+          />
         </Stack>
       </Box>
     </Box>
