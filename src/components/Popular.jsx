@@ -5,15 +5,18 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material";
+import { Box, Container } from "@mui/material";
 import useData from "../hooks/useData";
 import { FavoritesContext } from "../context/FavoritesContext";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
 
 function Popular() {
 
   const {data, getMovie} = useData();
   const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getMovie("popular")
@@ -47,6 +50,8 @@ function Popular() {
               height="375px"
               image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               alt={`${movie.title}`}
+              onClick={() => navigate(`/detail/${movie.id}`)}
+              sx={{cursor:'pointer'}}
             />
             <CardContent>
               <Typography variant="subtitle2" align="center">
