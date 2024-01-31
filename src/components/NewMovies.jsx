@@ -16,13 +16,24 @@ import { useNavigate } from "react-router-dom";
 function NewMovies() {
   const { data, getMovie } = useData()
   const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
-
   const navigate = useNavigate()
 
-  useEffect(() => {
-    getMovie("now_playing")
-  }, [])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
+  useEffect(() => {
+    getMovie("now_playing", currentPage)
+      .then((result) => {
+        setTotalPages(result.total_pages);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      });
+  }, [currentPage, getMovie]);
+
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <Box>
@@ -36,13 +47,21 @@ function NewMovies() {
               {isFavorite(movie.id) ? (
                 <FcLike
                   fontSize="25px"
-                  style={{ position: "absolute", padding: "5px", cursor:"pointer" }}
+                  style={{
+                    position: "absolute",
+                    padding: "5px",
+                    cursor: "pointer",
+                  }}
                   onClick={() => deleteFavorite(movie.id)}
                 />
               ) : (
                 <FcLikePlaceholder
                   fontSize="25px"
-                  style={{ position: "absolute", padding: "5px", cursor:"pointer" }}
+                  style={{
+                    position: "absolute",
+                    padding: "5px",
+                    cursor: "pointer",
+                  }}
                   onClick={() => addFavorite(movie)}
                 />
               )}
@@ -53,7 +72,7 @@ function NewMovies() {
               image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               alt={`${movie.title}`}
               onClick={() => navigate(`/detail/${movie.id}`)}
-              sx={{cursor:'pointer'}}
+              sx={{ cursor: "pointer" }}
             />
             <CardContent>
               <Typography variant="subtitle2" align="center">
@@ -66,11 +85,11 @@ function NewMovies() {
       <Box sx={{ display: "flex", justifyContent: "center" }} p={2}>
         <Stack spacing={2}>
           <Pagination
-            count={158}
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
             showFirstButton
             showLastButton
-            variant="outlined"
-            shape="rounded"
           />
         </Stack>
       </Box>
