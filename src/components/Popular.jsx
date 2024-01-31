@@ -56,11 +56,6 @@ function Popular() {
                 {movie.title}
               </Typography>
             </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-            </CardActions>
           </Card>
         ))}
       </Box>
