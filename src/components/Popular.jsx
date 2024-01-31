@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -10,10 +10,13 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Box, Container } from "@mui/material";
 import useData from "../hooks/useData";
+import { FavoritesContext } from "../context/FavoritesContext";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 
 function Popular() {
 
   const {data, getMovie} = useData();
+  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
 
   useEffect(() => {
     getMovie("popular")
@@ -27,6 +30,21 @@ function Popular() {
       <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
         {data.map((movie) => (
           <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
+            <Box display="flex" justifyContent="flex-end">
+              {isFavorite(movie.id) ? (
+                <FcLike
+                  fontSize="25px"
+                  style={{ position: "absolute", padding: "5px", cursor:"pointer" }}
+                  onClick={() => deleteFavorite(movie.id)}
+                />
+              ) : (
+                <FcLikePlaceholder
+                  fontSize="25px"
+                  style={{ position: "absolute", padding: "5px", cursor:"pointer" }}
+                  onClick={() => addFavorite(movie)}
+                />
+              )}
+            </Box>
             <CardMedia
               component="img"
               height="375px"
