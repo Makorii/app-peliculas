@@ -17,7 +17,7 @@ function MovieList({ category }) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        getMovie(category);
+        getMovie(category, "1");
     }, [category])
 
   return (
