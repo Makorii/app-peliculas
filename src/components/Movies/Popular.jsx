@@ -39,7 +39,9 @@ function Popular() {
         <Typography variant="h4" align="center" p={2}>
           Popular Movies
         </Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent : {
+        xs : "center",
+      }}} p={3}>
         {data.map((movie) => (
           <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
             <Box display="flex" justifyContent="flex-end">
