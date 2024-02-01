@@ -59,25 +59,25 @@ function DetailMovie() {
           alt={`${data.title}`}
         />
       </Box>
-      <Box display="flex" flexDirection="column" maxWidth="500px">
+      <Box display="flex" flexDirection="column" maxWidth="500px" p={1}>
         <Typography variant="h3">{data.title}</Typography>
-        <Typography variant="subtitle1">Resume</Typography>
-        <Typography variant="body">{data.overview}</Typography>
-        <Typography variant="subtitle1">Genres</Typography>
+        <Typography variant="overline" pt={1}>Resume:</Typography>
+        <Typography variant="body1">{data.overview}</Typography>
+        <Typography variant="overline" pt={1}>Genres:</Typography>
         {data.genres && data.genres.length > 0 ? (
           data.genres.map((genre) => (
-            <Typography key={genre.id} variant="body">
+            <Typography key={genre.id} variant="body1">
               {genre.name}
             </Typography>
           ))
         ) : (
           <Typography variant="body">No genres available</Typography>
         )}
-      </Box>
-      <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen} sx={{width:"200px", marginTop:"20px"}} color="error">
         See trailer
       </Button>
+      </Box>
+      <React.Fragment>
       <Dialog
         fullScreen
         open={open}
