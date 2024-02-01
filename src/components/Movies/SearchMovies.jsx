@@ -4,8 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import useData from "../../hooks/useData";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +41,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
