@@ -5,11 +5,11 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import useData from "../../hooks/useData";
 import { FavoritesContext } from "../../context/FavoritesContext";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Popular() {
 
