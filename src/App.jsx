@@ -8,25 +8,39 @@ import SearchMovies from "./components/SearchMovies";
 import FavoritesContextProvider from "./context/FavoritesContext";
 import DetailMovie from "./components/DetailMovie";
 import FavoritesMovies from "./components/FavoritesMovies";
+import { useEffect, useState } from "react";
+import Spinner from "./components/Spinner";
 
 
 function App() {
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  }, []);
 
   return (
     <>
       <BrowserRouter>
         <FavoritesContextProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/new-movies" element={<NewMovies />} />
-            <Route path="/popular" element={<Popular />} />
-            <Route path="/search" element={<SearchMovies />} />
-            <Route path="/detail/:id" element={<DetailMovie />} />
-            <Route path="/favorites" element={<FavoritesMovies />} />
-          </Routes>
-          <Footer />
+          {loading ? (
+            <Spinner />
+          ) : (
+            <>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/new-movies" element={<NewMovies />} />
+                <Route path="/popular" element={<Popular />} />
+                <Route path="/search" element={<SearchMovies />} />
+                <Route path="/detail/:id" element={<DetailMovie />} />
+                <Route path="/favorites" element={<FavoritesMovies />} />
+              </Routes>
+              <Footer />
+            </>
+          )}
         </FavoritesContextProvider>
       </BrowserRouter>
     </>
