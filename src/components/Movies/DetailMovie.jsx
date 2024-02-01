@@ -49,9 +49,14 @@ function DetailMovie() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundPosition : {
+          xs : "center",
+        }
       }}
     >
-      <Box sx={{ width: "400px", padding: "25px"}}>
+      <Box sx={{ width: "400px", padding: "25px", display: {
+            xs : "none", md : "flex",
+          }}}>
         <CardMedia
           component="img"
           width="100%"
@@ -59,7 +64,9 @@ function DetailMovie() {
           alt={`${data.title}`}
         />
       </Box>
-      <Box display="flex" flexDirection="column" maxWidth="500px" p={1}>
+      <Box display="flex" flexDirection="column" maxWidth="500px" p={1} sx={{padding: {
+            xs: "30px",
+          }}}>
         <Typography variant="h3">{data.title}</Typography>
         <Typography variant="overline" pt={1}>Resume:</Typography>
         <Typography variant="body1">{data.overview}</Typography>
