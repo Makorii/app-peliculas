@@ -40,6 +40,7 @@ function DetailMovie() {
 
   return (
     <Box
+    className="filter"
       sx={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original${data.backdrop_path})`,
         height: "100vh",
@@ -50,7 +51,7 @@ function DetailMovie() {
         alignItems: "center",
       }}
     >
-      <Box sx={{ width: "400px", padding: "25px" }}>
+      <Box sx={{ width: "400px", padding: "25px"}}>
         <CardMedia
           component="img"
           width="100%"
