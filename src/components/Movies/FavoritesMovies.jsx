@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 import Typography from "@mui/material/Typography";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 function FavoritesMovies() {
     const { favorites, isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
