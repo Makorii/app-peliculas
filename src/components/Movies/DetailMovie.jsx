@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react'
 import useData from '../../hooks/useData'
-import { Box, Button, Card, CardMedia, Container, Dialog, Typography } from '@mui/material'
+import { Box, Button, CardMedia, Dialog, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom';
 import * as React from 'react';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemButton from '@mui/material/ListItemButton';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
