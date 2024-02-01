@@ -16,7 +16,9 @@ function FavoritesMovies() {
       <Typography variant="h4" align="center" p={2}>
         Favorites Movies
       </Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent : {
+        xs : "center",
+      }}} p={3}>
         {favorites.length === 0 ? (
           <Box
             display="flex"
