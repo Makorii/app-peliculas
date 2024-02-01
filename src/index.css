@@ -4,6 +4,8 @@ body {
   box-sizing: border-box;
 }
 
+/* Slider de Home */
+
 .aws-btn {
 
   --slider-height-percentage: 60%;
@@ -25,12 +27,15 @@ body {
   height: 600px;
 }
 
+/* Lista de peliculas en Home */
+
 .boxes-movies {
   max-height: 600px;
   overflow: scroll;
   padding-top: 0 !important;
 }
 
+/* Spinner */
 
 .loader {
   display: flex;
