@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, Container, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
