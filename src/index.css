@@ -53,6 +53,12 @@ body {
   font-family: monospace;
 }
 
+@media (max-width: 480px) {
+  .scanner span {
+    font-size: 3rem;
+  }
+}
+
 .scanner span::before {
   content: "Makoflix";
   position: absolute;
