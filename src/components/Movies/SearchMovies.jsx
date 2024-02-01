@@ -94,7 +94,9 @@ function SearchMovies() {
       {data.length === 0 ? (
         <Box height="70.8vh"></Box>
       ) : (
-        <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent : {
+          xs : "center",
+        } }} p={3}>
           {" "}
           {data.map((movie) => (
             <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
