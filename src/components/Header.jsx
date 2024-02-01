@@ -179,7 +179,10 @@ function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <MenuItem key="Search" onClick={() => navigate("/search")}>
               <SearchIcon />
-              <Typography textAlign="center">Search</Typography>
+              <Typography textAlign="center" sx={{display : {
+                xs : "none",
+                md : "flex",
+              }}}>Search</Typography>
             </MenuItem>
           </Box>
         </Toolbar>
