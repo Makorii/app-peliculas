@@ -83,3 +83,9 @@ body {
     width: 100%;
   }
 }
+
+.filter {
+  box-shadow: 200px 200px 0px 196px rgba(0,0,0,0.71) inset;
+  -webkit-box-shadow: -2000px 200px 0px 196px rgba(0,0,0,0.71) inset;
+  -moz-box-shadow: -2000px 200px 0px 196px rgba(0,0,0,0.71) inset;
+}
