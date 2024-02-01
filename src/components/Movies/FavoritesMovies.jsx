@@ -29,8 +29,8 @@ function FavoritesMovies() {
           </Box>
         ) : (
           favorites.map((movie) => (
-            <Box height="67.4vh">
-              <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
+            <Box height="67.4vh"  key={movie.id}>
+              <Card sx={{ width: 250, margin: "15px" }}>
                 <Box display="flex" justifyContent="flex-end">
                   {isFavorite(movie.id) ? (
                     <FcLike
