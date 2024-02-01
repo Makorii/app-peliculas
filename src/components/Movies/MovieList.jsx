@@ -21,7 +21,11 @@ function MovieList({ category }) {
     }, [category])
 
   return (
-    <Grid item sm={8} className="boxes-movies">
+    <Grid item sm={8} className="boxes-movies" sx={{ margin : {
+      xs : "15px 0"
+    }, width : {
+      xs : "100%"
+    }}}>
       <ListSubheader
         component="div"
         id="nested-list-subheader"
@@ -39,7 +43,8 @@ function MovieList({ category }) {
             }}
           >
             <ListItem onClick={() => navigate(`/detail/${movie.id}`)}
-              sx={{cursor:'pointer'}}>
+              sx={{cursor:'pointer'}}
+              >
               <ListItemAvatar>
                 <Avatar
                   alt="Travis Howard"
