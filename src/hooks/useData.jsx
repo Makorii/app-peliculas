@@ -74,12 +74,37 @@ function useData() {
       .catch((err) => console.error("error:" + err));
   };
 
+  const trailerMovie = (movieId, setVideoUrl) => {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+    };
+
+    fetch(url, options)
+    .then((res) => res.json())
+    .then((data) => {
+      const trailer = data.results.find(video => video.type === "Teaser");
+      if (trailer) {
+        const youtubeLink = `https://www.youtube.com/embed/${trailer.key}`;
+        setVideoUrl(youtubeLink);
+      } else {
+        console.log("No se encontró el trailer");
+      }
+    })
+    .catch((err) => console.error("error:" + err));
+  }
+
   return {
     data,
     getMovie,
     moviesSlider,
     searchMovie,
     detailMovie,
+    trailerMovie,
   };
 }
 
