@@ -45,7 +45,7 @@ function Popular() {
 
   return (
     <Box>
-      <Typography variant="h4" align="center" p={2}>
+      <Typography variant="h4" align="center" p={2} color="white" mt={6}>
         Popular Movies
       </Typography>
       <Box
@@ -67,7 +67,11 @@ function Popular() {
           </Box>
         ) : (
           data.map((movie) => (
-            <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
+            <Card sx={{ width: 250, margin: {
+              xs : "15px",
+              md : "20px",
+              lg : "29px"
+            } }} key={movie.id}>
               <Box display="flex" justifyContent="flex-end">
                 {isFavorite(movie.id) ? (
                   <FcLike
@@ -108,14 +112,15 @@ function Popular() {
           ))
         )}
       </Box>
-      {loading ? null : <Box sx={{ display: "flex", justifyContent: "center" }} p={2}>
-        <Stack spacing={2}>
+      {loading ? null : <Box sx={{ display: "flex", justifyContent: "center", color:"white" }} p={2}>
+        <Stack spacing={2} sx={{color:"white"}}>
           <Pagination
             count={totalPages}
             page={currentPage}
             onChange={handlePageChange}
             showFirstButton
             showLastButton
+            className="paginador"
           />
         </Stack>
       </Box>}
