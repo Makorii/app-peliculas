@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import useData from "../../hooks/useData";
 import { useContext } from "react";
 import { FavoritesContext } from "../../context/FavoritesContext";
@@ -36,23 +36,43 @@ function NewMovies() {
     setCurrentPage(newPage);
   };
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
+
   return (
     <Box>
-      <Typography variant="h4" align="center" p={2}>
+      <Typography variant="h4" align="center" p={2} color="white" mt={6}>
         New movies
       </Typography>
       <Box
+        className="container-cards"
         sx={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: {
             xs: "center",
+            md: "center",
+            lg: "flex-start"
           },
         }}
         p={3}
       >
-        {data.map((movie) => (
-          <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
+        {loading ? (
+          <Box sx={{width:"100%", height:"67.4vh", display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <CircularProgress sx={{color:"red"}}/>
+          </Box>
+        ) : (data.map((movie) => (
+          <Card sx={{ width: 250, margin: {
+            xs : "15px",
+            md : "20px",
+            lg : "29px"
+          } }} key={movie.id}>
             <Box display="flex" justifyContent="flex-end">
               {isFavorite(movie.id) ? (
                 <FcLike
@@ -90,10 +110,10 @@ function NewMovies() {
               </Typography>
             </CardContent>
           </Card>
-        ))}
+        )))}
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "center" }} p={2}>
-        <Stack spacing={2}>
+      {loading ? null : <Box sx={{ display: "flex", justifyContent: "center" }} p={2}>
+        <Stack spacing={2} >
           <Pagination
             count={totalPages}
             page={currentPage}
@@ -102,7 +122,7 @@ function NewMovies() {
             showLastButton
           />
         </Stack>
-      </Box>
+      </Box>}
     </Box>
   );
 }
