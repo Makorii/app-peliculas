@@ -6,19 +6,9 @@ function Home() {
   return (
     <>
       <Slider />
-      <Container>
-        <Grid
-          xl
-          container
-          spacing={2}
-          columns={16}
-          pt={6}
-          mt={6}
-          columnSpacing={10}
-        >
+      <Container maxWidth="xl" sx={{display:"flex", margin:"80px auto"}}>
           <MovieList category="popular" />
           <MovieList category="top_rated" />
-        </Grid>
       </Container>
     </>
   );
