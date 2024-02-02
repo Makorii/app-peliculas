@@ -53,16 +53,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function SearchMovies() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const { data, searchMovie} = useData()
-  const navigate = useNavigate()
-  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
+  const [searchTerm, setSearchTerm] = useState("");
+  const { data, searchMovie } = useData();
+  const navigate = useNavigate();
+  const { isFavorite, addFavorite, deleteFavorite } =
+    useContext(FavoritesContext);
 
   useEffect(() => {
-      searchMovie(searchTerm);
-    }, [searchTerm]);
-
-
+    searchMovie(searchTerm);
+  }, [searchTerm]);
 
   return (
     <>
@@ -94,9 +93,16 @@ function SearchMovies() {
       {data.length === 0 ? (
         <Box height="70.8vh"></Box>
       ) : (
-        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent : {
-          xs : "center",
-        } }} p={3}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: {
+              xs: "center",
+            },
+          }}
+          p={3}
+        >
           {" "}
           {data.map((movie) => (
             <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>

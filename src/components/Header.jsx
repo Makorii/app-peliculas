@@ -12,7 +12,6 @@ import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 
-
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const navigate = useNavigate();
@@ -183,10 +182,17 @@ function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <MenuItem key="Search" onClick={() => navigate("/search")}>
               <SearchIcon />
-              <Typography textAlign="center" sx={{display : {
-                xs : "none",
-                md : "flex",
-              }}}>Search</Typography>
+              <Typography
+                textAlign="center"
+                sx={{
+                  display: {
+                    xs: "none",
+                    md: "flex",
+                  },
+                }}
+              >
+                Search
+              </Typography>
             </MenuItem>
           </Box>
         </Toolbar>

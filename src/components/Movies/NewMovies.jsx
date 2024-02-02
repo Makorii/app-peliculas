@@ -7,16 +7,17 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import useData from "../../hooks/useData";
 import { useContext } from "react";
 import { FavoritesContext } from "../../context/FavoritesContext";
 import { useNavigate } from "react-router-dom";
 
 function NewMovies() {
-  const { data, getMovie } = useData()
-  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
-  const navigate = useNavigate()
+  const { data, getMovie } = useData();
+  const { isFavorite, addFavorite, deleteFavorite } =
+    useContext(FavoritesContext);
+  const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -40,9 +41,16 @@ function NewMovies() {
       <Typography variant="h4" align="center" p={2}>
         New movies
       </Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent : {
-        xs : "center",
-      }}} p={3}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: {
+            xs: "center",
+          },
+        }}
+        p={3}
+      >
         {data.map((movie) => (
           <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
             <Box display="flex" justifyContent="flex-end">
