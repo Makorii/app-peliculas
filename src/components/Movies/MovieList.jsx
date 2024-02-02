@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Container,
   Grid,
   List,
   ListItem,
@@ -21,23 +22,11 @@ function MovieList({ category }) {
   }, [category]);
 
   return (
-    <Grid
-      item
-      sm={8}
-      className="boxes-movies"
-      sx={{
-        margin: {
-          xs: "15px 0",
-        },
-        width: {
-          xs: "100%",
-        },
-      }}
-    >
+    <Container maxWidth="xl" sx={{display:"flex", flexDirection:"column", width:"700px"}} className="boxes-movies">
       <ListSubheader
         component="div"
         id="nested-list-subheader"
-        sx={{ backgroundColor: "#000000", color: "white" }}
+        sx={{ backgroundColor: "#1e1e1e", color: "white", width: "700px", textAlign: "center"}}
       >
         {category === "popular" ? "Popular" : "Top Rated"}
       </ListSubheader>
@@ -45,8 +34,8 @@ function MovieList({ category }) {
         <Box key={movie.id}>
           <List
             sx={{
-              width: "100%",
-              maxWidth: 360,
+              width: "700px",
+              color: "white",
               bgcolor: "background.paper",
             }}
           >
@@ -65,7 +54,7 @@ function MovieList({ category }) {
           </List>
         </Box>
       ))}
-    </Grid>
+    </Container>
   );
 }
 
