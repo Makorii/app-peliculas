@@ -35,7 +35,7 @@ function FavoritesMovies() {
             width="100%"
             alignItems="center"
           >
-            <Typography align="center">Add a new favorite movie</Typography>
+            <Typography align="center" color="white" variant="h5">Add a new favorite movie...</Typography>
           </Box>
         ) : (
           favorites.map((movie) => (
