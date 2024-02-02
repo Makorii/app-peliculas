@@ -112,15 +112,14 @@ function Popular() {
           ))
         )}
       </Box>
-      {loading ? null : <Box sx={{ display: "flex", justifyContent: "center", color:"white" }} p={2}>
-        <Stack spacing={2} sx={{color:"white"}}>
+      {loading ? null : <Box sx={{ display: "flex", justifyContent: "center"}} p={2}>
+        <Stack spacing={2}>
           <Pagination
             count={totalPages}
             page={currentPage}
             onChange={handlePageChange}
             showFirstButton
             showLastButton
-            className="paginador"
           />
         </Stack>
       </Box>}
