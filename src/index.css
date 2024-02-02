@@ -117,9 +117,3 @@ body {
   -webkit-box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
   -moz-box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
 }
-
-/* color paginador */
-
-.paginador {
-  color: white !important;
-}
