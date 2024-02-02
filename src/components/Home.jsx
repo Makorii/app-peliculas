@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <Slider />
-      <Container maxWidth="xl" sx={{display:"flex", margin:"80px auto"}}>
+      <Container maxWidth="xl" sx={{display:"flex", margin:"80px auto", flexWrap:"wrap"}}>
           <MovieList category="popular" />
           <MovieList category="top_rated" />
       </Container>
