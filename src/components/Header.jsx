@@ -12,10 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 
-
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -24,6 +22,11 @@ function Header() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleMenuItemClick = (path) => {
+    navigate(path);
+    handleCloseNavMenu();
   };
 
   return (
@@ -81,7 +84,7 @@ function Header() {
                 key="home"
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <MenuItem onClick={() => navigate("/")}>
+                <MenuItem onClick={() => handleMenuItemClick("/")}>
                   <Typography variant="subtitle2" textAlign="center">
                     Home
                   </Typography>
@@ -91,7 +94,7 @@ function Header() {
                 key="new-movies"
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <MenuItem onClick={() => navigate("/new-movies")}>
+                <MenuItem onClick={() => handleMenuItemClick("/new-movies")}>
                   <Typography variant="subtitle2" textAlign="center">
                     New Movies
                   </Typography>
@@ -101,7 +104,7 @@ function Header() {
                 key="popular"
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <MenuItem onClick={() => navigate("/popular")}>
+                <MenuItem onClick={() => handleMenuItemClick("/popular")}>
                   <Typography variant="subtitle2" textAlign="center">
                     Popular
                   </Typography>
@@ -111,7 +114,7 @@ function Header() {
                 key="favorites"
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <MenuItem onClick={() => navigate("/favorites")}>
+                <MenuItem onClick={() => handleMenuItemClick("/favorites")}>
                   <Typography variant="subtitle2" textAlign="center">
                     Favorites
                   </Typography>
@@ -179,7 +182,17 @@ function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <MenuItem key="Search" onClick={() => navigate("/search")}>
               <SearchIcon />
-              <Typography textAlign="center">Search</Typography>
+              <Typography
+                textAlign="center"
+                sx={{
+                  display: {
+                    xs: "none",
+                    md: "flex",
+                  },
+                }}
+              >
+                Search
+              </Typography>
             </MenuItem>
           </Box>
         </Toolbar>

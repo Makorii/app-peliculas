@@ -4,12 +4,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import useData from "../hooks/useData";
+import useData from "../../hooks/useData";
 import { useNavigate } from "react-router-dom";
-import { FavoritesContext } from "../context/FavoritesContext";
+import { FavoritesContext } from "../../context/FavoritesContext";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 
 const Search = styled("div")(({ theme }) => ({
@@ -42,7 +41,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -55,16 +53,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function SearchMovies() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const { data, searchMovie} = useData()
-  const navigate = useNavigate()
-  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
+  const [searchTerm, setSearchTerm] = useState("");
+  const { data, searchMovie } = useData();
+  const navigate = useNavigate();
+  const { isFavorite, addFavorite, deleteFavorite } =
+    useContext(FavoritesContext);
 
   useEffect(() => {
-      searchMovie(searchTerm);
-    }, [searchTerm]);
-
-
+    searchMovie(searchTerm);
+  }, [searchTerm]);
 
   return (
     <>
@@ -96,7 +93,16 @@ function SearchMovies() {
       {data.length === 0 ? (
         <Box height="70.8vh"></Box>
       ) : (
-        <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: {
+              xs: "center",
+            },
+          }}
+          p={3}
+        >
           {" "}
           {data.map((movie) => (
             <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>

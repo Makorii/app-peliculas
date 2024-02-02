@@ -8,20 +8,32 @@ import {
   ListItemText,
   ListSubheader,
 } from "@mui/material";
-import useData from "../hooks/useData";
+import useData from "../../hooks/useData";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function MovieList({ category }) {
-    const { data, getMovie } = useData()
-    const navigate = useNavigate()
+  const { data, getMovie } = useData();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        getMovie(category, "1");
-    }, [category])
+  useEffect(() => {
+    getMovie(category, "1");
+  }, [category]);
 
   return (
-    <Grid item sm={8} className="boxes-movies">
+    <Grid
+      item
+      sm={8}
+      className="boxes-movies"
+      sx={{
+        margin: {
+          xs: "15px 0",
+        },
+        width: {
+          xs: "100%",
+        },
+      }}
+    >
       <ListSubheader
         component="div"
         id="nested-list-subheader"
@@ -38,8 +50,10 @@ function MovieList({ category }) {
               bgcolor: "background.paper",
             }}
           >
-            <ListItem onClick={() => navigate(`/detail/${movie.id}`)}
-              sx={{cursor:'pointer'}}>
+            <ListItem
+              onClick={() => navigate(`/detail/${movie.id}`)}
+              sx={{ cursor: "pointer" }}
+            >
               <ListItemAvatar>
                 <Avatar
                   alt="Travis Howard"

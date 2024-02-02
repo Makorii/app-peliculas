@@ -4,6 +4,8 @@ body {
   box-sizing: border-box;
 }
 
+/* Slider de Home */
+
 .aws-btn {
 
   --slider-height-percentage: 60%;
@@ -25,12 +27,15 @@ body {
   height: 600px;
 }
 
+/* Lista de peliculas en Home */
+
 .boxes-movies {
   max-height: 600px;
   overflow: scroll;
   padding-top: 0 !important;
 }
 
+/* Spinner */
 
 .loader {
   display: flex;
@@ -46,6 +51,12 @@ body {
   position: relative;
   overflow: hidden;
   font-family: monospace;
+}
+
+@media (max-width: 480px) {
+  .scanner span {
+    font-size: 3rem;
+  }
 }
 
 .scanner span::before {
@@ -77,4 +88,10 @@ body {
   60%, 80% {
     width: 100%;
   }
+}
+
+.filter {
+  box-shadow: 200px 200px 0px 196px rgba(0,0,0,0.71) inset;
+  -webkit-box-shadow: -2000px 200px 0px 196px rgba(0,0,0,0.71) inset;
+  -moz-box-shadow: -2000px 200px 0px 196px rgba(0,0,0,0.71) inset;
 }

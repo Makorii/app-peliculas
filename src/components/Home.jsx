@@ -1,6 +1,6 @@
 import Slider from "./Slider";
 import { Container, Grid } from "@mui/material";
-import MovieList from "./MovieList";
+import MovieList from "./Movies/MovieList";
 
 function Home() {
   return (
@@ -8,6 +8,7 @@ function Home() {
       <Slider />
       <Container>
         <Grid
+          xl
           container
           spacing={2}
           columns={16}

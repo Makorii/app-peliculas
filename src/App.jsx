@@ -1,13 +1,13 @@
 import  Home  from "./components/Home"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import NewMovies from "./components/NewMovies"
-import Popular from "./components/Popular"
+import NewMovies from "./components/Movies/NewMovies"
+import Popular from "./components/Movies/Popular"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SearchMovies from "./components/SearchMovies";
+import SearchMovies from "./components/Movies/SearchMovies";
 import FavoritesContextProvider from "./context/FavoritesContext";
-import DetailMovie from "./components/DetailMovie";
-import FavoritesMovies from "./components/FavoritesMovies";
+import DetailMovie from "./components/Movies/DetailMovie";
+import FavoritesMovies from "./components/Movies/FavoritesMovies";
 import { useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
 

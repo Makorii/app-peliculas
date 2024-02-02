@@ -1,22 +1,32 @@
-import { useContext } from "react"
-import { FavoritesContext } from "../context/FavoritesContext"
+import { useContext } from "react";
+import { FavoritesContext } from "../../context/FavoritesContext";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 import Typography from "@mui/material/Typography";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 function FavoritesMovies() {
-    const { favorites, isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext)
+  const { favorites, isFavorite, addFavorite, deleteFavorite } =
+    useContext(FavoritesContext);
 
   return (
     <Box>
       <Typography variant="h4" align="center" p={2}>
         Favorites Movies
       </Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap" }} p={3}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: {
+            xs: "center",
+          },
+        }}
+        p={3}
+      >
         {favorites.length === 0 ? (
           <Box
             display="flex"
@@ -29,8 +39,8 @@ function FavoritesMovies() {
           </Box>
         ) : (
           favorites.map((movie) => (
-            <Box height="67.4vh">
-              <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
+            <Box height="67.4vh" key={movie.id}>
+              <Card sx={{ width: 250, margin: "15px" }}>
                 <Box display="flex" justifyContent="flex-end">
                   {isFavorite(movie.id) ? (
                     <FcLike
@@ -76,4 +86,4 @@ function FavoritesMovies() {
   );
 }
 
-export default FavoritesMovies
+export default FavoritesMovies;

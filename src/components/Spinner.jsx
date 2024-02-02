@@ -1,13 +1,11 @@
-import React from 'react'
-
 function Spinner() {
   return (
-    <div class="loader">
-      <div class="scanner">
+    <div className="loader">
+      <div className="scanner">
         <span>Makoflix</span>
       </div>
     </div>
   );
 }
 
-export default Spinner
+export default Spinner;
