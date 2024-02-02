@@ -49,18 +49,20 @@ function Popular() {
         Popular Movies
       </Typography>
       <Box
+        className="container-cards"
         sx={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: {
             xs: "center",
+            md: "center",
             lg: "flex-start"
           },
         }}
         p={3}
       >
         {loading ? (
-          <Box sx={{height:"67.4vh"}}>
+          <Box sx={{width:"100%", height:"67.4vh", display:"flex", justifyContent:"center", alignItems:"center"}}>
             <CircularProgress sx={{color:"red"}}/>
           </Box>
         ) : (
