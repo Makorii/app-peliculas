@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: black;
 }
 
 /* Slider de Home */
@@ -32,8 +33,20 @@ body {
 .boxes-movies {
   max-height: 600px;
   overflow: scroll;
-  padding-top: 0 !important;
+  padding: 0 !important;
 }
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background-color: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #373636;
+  border-radius: 6px;
+}
+
 
 /* Spinner */
 
@@ -90,8 +103,29 @@ body {
   }
 }
 
+/* filtro para el detalle de la pelicula*/
 .filter {
   box-shadow: 200px 200px 0px 196px rgba(0,0,0,0.71) inset;
   -webkit-box-shadow: -2000px 200px 0px 196px rgba(0,0,0,0.71) inset;
   -moz-box-shadow: -2000px 200px 0px 196px rgba(0,0,0,0.71) inset;
+}
+
+/* media query para los contenedores de cards */
+@media (min-width: 1180px) and (max-width:1605px) {
+  .container-cards {
+    justify-content: center !important;
+  }
+}
+
+/* Bordes personalizados */
+.nav-border {
+  box-shadow: 0px 3px 13px 0px rgba(255,0,0,0.75) !important;
+-webkit-box-shadow: 0px 3px 13px 0px rgba(255,0,0,0.75) !important;
+-moz-box-shadow: 0px 3px 13px 0px rgba(255,0,0,0.75) !important;
+}
+
+.footer-border {
+  box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
+  -webkit-box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
+  -moz-box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
 }

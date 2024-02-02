@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -32,28 +33,30 @@ function Slider() {
       infinite={true}
     >
       {data.map((movie) => (
-        <div
+        <Box
           key={movie.id}
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundPositionX: "center",
+            backgroundPositionY : "top",
+            alignItems:"flex-end"
           }}
         >
-          <Card sx={{ maxWidth: 700 }} style={{ opacity: "75%" }}>
+          <Card sx={{ maxWidth: 700 }} style={{ opacity: "75%", marginBottom:"20px", backgroundColor:"black",  color:"white"}}>
             <CardActionArea onClick={() => navigate(`/detail/${movie.id}`)}>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" align="center">
                   {movie.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{color:"#ffffffde"}}>
                   {movie.overview}
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
-        </div>
+        </Box>
       ))}
     </AutoplaySlider>
   );

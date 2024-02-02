@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import useData from "../../hooks/useData";
 import { FavoritesContext } from "../../context/FavoritesContext";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
@@ -13,8 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 function Popular() {
   const { data, getMovie } = useData();
-  const { isFavorite, addFavorite, deleteFavorite } =
-    useContext(FavoritesContext);
+
+  const { isFavorite, addFavorite, deleteFavorite } = useContext(FavoritesContext);
+
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,63 +35,84 @@ function Popular() {
     setCurrentPage(newPage);
   };
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <Box>
-      <Typography variant="h4" align="center" p={2}>
+      <Typography variant="h4" align="center" p={2} color="white" mt={6}>
         Popular Movies
       </Typography>
       <Box
+        className="container-cards"
         sx={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: {
             xs: "center",
+            md: "center",
+            lg: "flex-start"
           },
         }}
         p={3}
       >
-        {data.map((movie) => (
-          <Card sx={{ width: 250, margin: "15px" }} key={movie.id}>
-            <Box display="flex" justifyContent="flex-end">
-              {isFavorite(movie.id) ? (
-                <FcLike
-                  fontSize="25px"
-                  style={{
-                    position: "absolute",
-                    padding: "5px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => deleteFavorite(movie.id)}
-                />
-              ) : (
-                <FcLikePlaceholder
-                  fontSize="25px"
-                  style={{
-                    position: "absolute",
-                    padding: "5px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => addFavorite(movie)}
-                />
-              )}
-            </Box>
-            <CardMedia
-              component="img"
-              height="375px"
-              image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-              alt={`${movie.title}`}
-              onClick={() => navigate(`/detail/${movie.id}`)}
-              sx={{ cursor: "pointer" }}
-            />
-            <CardContent>
-              <Typography variant="subtitle2" align="center">
-                {movie.title}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
+        {loading ? (
+          <Box sx={{width:"100%", height:"67.4vh", display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <CircularProgress sx={{color:"red"}}/>
+          </Box>
+        ) : (
+          data.map((movie) => (
+            <Card sx={{ width: 250, margin: {
+              xs : "15px",
+              md : "20px",
+              lg : "29px"
+            } }} key={movie.id}>
+              <Box display="flex" justifyContent="flex-end">
+                {isFavorite(movie.id) ? (
+                  <FcLike
+                    fontSize="25px"
+                    style={{
+                      position: "absolute",
+                      padding: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => deleteFavorite(movie.id)}
+                  />
+                ) : (
+                  <FcLikePlaceholder
+                    fontSize="25px"
+                    style={{
+                      position: "absolute",
+                      padding: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => addFavorite(movie)}
+                  />
+                )}
+              </Box>
+              <CardMedia
+                component="img"
+                height="375px"
+                image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                alt={`${movie.title}`}
+                onClick={() => navigate(`/detail/${movie.id}`)}
+                sx={{ cursor: "pointer" }}
+              />
+              <CardContent>
+                <Typography variant="subtitle2" align="center">
+                  {movie.title}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))
+        )}
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "center" }} p={2}>
+      {loading ? null : <Box sx={{ display: "flex", justifyContent: "center"}} p={2}>
         <Stack spacing={2}>
           <Pagination
             count={totalPages}
@@ -100,7 +122,7 @@ function Popular() {
             showLastButton
           />
         </Stack>
-      </Box>
+      </Box>}
     </Box>
   );
 }
