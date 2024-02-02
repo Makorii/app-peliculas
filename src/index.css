@@ -99,7 +99,7 @@ body {
 }
 
 /* media query para los contenedores de cards */
-@media (min-width: 1180px) and (max-width:1465px) {
+@media (min-width: 1180px) and (max-width:1605px) {
   .container-cards {
     justify-content: center !important;
   }
@@ -116,4 +116,10 @@ body {
   box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
   -webkit-box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
   -moz-box-shadow: 0px -3px 6px 0px rgba(255,0,0,0.75) !important;
+}
+
+/* color paginador */
+
+.paginador {
+  color: white !important;
 }
