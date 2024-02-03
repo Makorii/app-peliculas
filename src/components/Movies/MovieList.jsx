@@ -22,14 +22,22 @@ function MovieList({ category }) {
   }, [category]);
 
   return (
-    <Container maxWidth="xl" sx={{display:"flex", flexDirection:"column", width:"700px", marginTop: {
+    <Container maxWidth="xl" sx={{display:"flex", flexDirection:"column", width:{
+      xs : "100%",
+      md : "600px",
+      lg : "700px"
+    }, marginTop: {
       xs : "30px", 
       md : "30px",
     }}} className="boxes-movies">
       <ListSubheader
         component="div"
         id="nested-list-subheader"
-        sx={{ backgroundColor: "#1e1e1e", color: "white", width: "700px"}}
+        sx={{ backgroundColor: "#1e1e1e", color: "white", width:{
+          xs : "100%",
+          md : "600px",
+          lg : "700px"
+        }}}
       >
         {category === "popular" ? "Popular" : "Top Rated"}
       </ListSubheader>
@@ -37,7 +45,11 @@ function MovieList({ category }) {
         <Box key={movie.id}>
           <List
             sx={{
-              width: "700px",
+              width:{
+                xs : "100%",
+                md : "600px",
+                lg : "700px"
+              },
               color: "white",
               bgcolor: "background.paper",
             }}

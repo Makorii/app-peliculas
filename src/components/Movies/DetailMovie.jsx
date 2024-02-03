@@ -8,6 +8,8 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
+import { FavoritesContext } from "../../context/FavoritesContext";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -16,6 +18,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function DetailMovie() {
   const { data, detailMovie, trailerMovie } = useData();
   const { id } = useParams();
+  const { isFavorite, addFavorite, deleteFavorite } =
+    React.useContext(FavoritesContext);
   const [videoUrl, setVideoUrl] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -92,16 +96,43 @@ function DetailMovie() {
             </Typography>
           ))
         ) : (
-          <Typography variant="body">No genres available</Typography>
+          <Typography variant="body1">No genres available</Typography>
         )}
-        <Button
-          variant="contained"
-          onClick={handleClickOpen}
-          sx={{ width: "200px", marginTop: "20px" }}
-          color="error"
-        >
-          See trailer
-        </Button>
+        <Box display="flex" justifyContent="space-between">
+          <Button
+            variant="contained"
+            onClick={handleClickOpen}
+            sx={{ width: "200px", marginTop: "20px" }}
+            color="error"
+          >
+            See trailer
+          </Button>
+          {isFavorite(data.id) ? (
+            <Box display="flex" alignItems="center" sx={{ marginTop: "20px"}}>
+              <FcLike
+                fontSize="25px"
+                style={{
+                  padding: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => deleteFavorite(data.id)}
+              />
+              <Typography variant="body1">Remove favorite</Typography>
+            </Box>
+          ) : (
+            <Box display="flex" alignItems="center" sx={{ marginTop: "20px"}}>
+              <FcLikePlaceholder
+                fontSize="25px"
+                style={{
+                  padding: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => addFavorite(data)}
+              />
+              <Typography variant="body1">Add to favorites</Typography>
+            </Box>
+          )}
+        </Box>
       </Box>
       <React.Fragment>
         <Dialog
