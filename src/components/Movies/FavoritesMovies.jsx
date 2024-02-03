@@ -7,10 +7,13 @@ import { FcLikePlaceholder } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function FavoritesMovies() {
   const { favorites, isFavorite, addFavorite, deleteFavorite } =
     useContext(FavoritesContext);
+
+    const navigate = useNavigate()
 
   return (
     <Box>
