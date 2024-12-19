@@ -29,7 +29,7 @@ function Popular() {
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [currentPage, getMovie]);
+  }, [currentPage]);
 
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);
